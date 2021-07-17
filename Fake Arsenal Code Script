@@ -1,0 +1,31 @@
+--Credits to Unknown!
+
+local gui = game:GetService("Players").LocalPlayer.PlayerGui
+ 
+gui.Menew.Codes.Redeem.MouseButton1Click:Connect(function()
+    game:GetService("Players").LocalPlayer.PlayerGui.Menew.Codes.TextBox.ZIndex = 10000000
+    local fake = gui.Menew.Codes.Redeem:Clone()
+    fake.Parent = gui.Menew.Codes
+    fake.ZIndex = 1000
+    fake.Name = "Fake"
+    fake.Text = "Code Redeemed!"
+ 
+    local sound = Instance.new("Sound")
+    sound.SoundId = "rbxassetid://1585231427"
+    sound:Play()
+ 
+    local service = game:GetService("SoundService")
+    service:PlayLocalSound(sound)
+ 
+    local charModel = workspace:FindFirstChild(game.Players.LocalPlayer.Data.Skin.Value)
+ 
+    local equipAnim = Instance.new("Animation")
+    equipAnim.AnimationId = "rbxassetid://895992153"
+ 
+    local anim = charModel.Humanoid:LoadAnimation(equipAnim)
+    anim:Play()
+ 
+    wait(2.2)
+ 
+    fake.Visible = false
+end)
